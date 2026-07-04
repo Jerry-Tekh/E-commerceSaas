@@ -24,7 +24,7 @@ export default function Testimonials() {
             name: "Emily Thompson",
             role: "Creative Director, Sustainable Fashion",
             image: "/images/4937.jpg",
-            content: "The email marketing tools and SEO features have helped us reach customers we never could before. Plus, having our own custom domain makes us look like an enterprise brand from day one.",
+            content: "The SEO features and store customization helped us reach customers we never could before. Plus, having our own custom domain makes us look like an enterprise brand from day one.",
             rating: 5,
             revenue: "2x customer retention",
         },

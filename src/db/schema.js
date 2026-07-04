@@ -867,14 +867,13 @@ export const featureKeyEnum = pgEnum("feature_key", [
     "stores_count",
     "products_count",
     "custom_domain",
-    "email_service",
     "zynkart_branding",
     "api_mode",
     "templates_access",
 ]);
 export const limitTypeEnum = pgEnum("limit_type", [
     "count", // Numeric limits (e.g., max 10 products)
-    "monthly", // Monthly reset limits (e.g., 500 emails per month)
+    "monthly", // Monthly reset limits
     "boolean", // True/false features (e.g., custom domain yes/no)
 ]);
 export const resetPeriodEnum = pgEnum("reset_period", [

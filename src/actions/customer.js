@@ -137,7 +137,6 @@ export const signUpCustomer = async ({ storeId, ...values }) => {
             password: hashedPassword,
         })
             .returning();
-        // TODO: Send verification email in production
         return {
             success: "Account created successfully",
             error: "",

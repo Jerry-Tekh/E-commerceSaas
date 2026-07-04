@@ -1,5 +1,4 @@
 "use client";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogClose, } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,7 +11,6 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, } from 
 import { FormSuccess } from "@/components/ui/form-success";
 import { FormError } from "@/components/ui/form-error";
 import { ArrowRight, Loader2, Eye, EyeOff } from "lucide-react";
-import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { info } from "@/constants";
@@ -22,7 +20,6 @@ export function LoginForm({ className, ...props }) {
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [done, setDone] = useState(false);
     const [captchaToken, setCaptchaToken] = useState("");
     const turnstileRef = useRef(null);
     const router = useRouter();
@@ -65,11 +62,7 @@ export function LoginForm({ className, ...props }) {
                         // Reset captcha on error
                         turnstileRef.current?.reset();
                         setCaptchaToken("");
-                        if (context.error.status === 403) {
-                            toast.error("Verify your email!");
-                            setDone(true);
-                        }
-                        else if (context.error.status === 429) {
+                        if (context.error.status === 429) {
                             const retryAfter = context.error.headers.get("X-Retry-After");
                             setError(`Clicking too fast! Please wait ${retryAfter} seconds before trying again.`);
                         }
@@ -88,7 +81,6 @@ export function LoginForm({ className, ...props }) {
         });
     }
     return (<>
-      <Done done={done} setDone={setDone}/>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className={cn("flex flex-col gap-6", className)} {...props}>
           <div className="flex flex-col items-center gap-2 text-center mb-8">
@@ -110,9 +102,6 @@ export function LoginForm({ className, ...props }) {
             <FormField control={form.control} name="password" disabled={isPending} render={({ field }) => (<FormItem className="grid gap-2">
                   <div className="flex items-center justify-between mb-1">
                     <FormLabel htmlFor="password" className="text-xs uppercase tracking-widest text-zinc-500">Password</FormLabel>
-                    <Link href="/forgot-password" className="text-xs tracking-widest uppercase text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
-                      Forgot password?
-                    </Link>
                   </div>
                   <FormControl>
                     <div className="relative">
@@ -172,26 +161,3 @@ export function LoginForm({ className, ...props }) {
       </Form>
     </>);
 }
-const Done = ({ done, setDone, }) => {
-    return (<Dialog open={done} onOpenChange={setDone}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Account verification required!</DialogTitle>
-          <DialogDescription>
-            <h1 className="text-lg font-semibold">
-              A link has been sent to your email to verify your account. Please
-              check your email for the verification link.
-            </h1>
-            <p className="text-sm text-muted-foreground mt-2">
-              You might need to check your spam folder and mark it as not spam.
-            </p>
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button>Continue</Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>);
-};

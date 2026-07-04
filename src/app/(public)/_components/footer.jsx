@@ -141,22 +141,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter Signup */}
-        <div className="border-t border-gray-800 pt-12 mb-12">
-          <div className="max-w-md mx-auto text-center">
-            <h4 className="font-semibold text-white mb-4">Get Product Updates</h4>
-            <p className="text-gray-400 mb-6">
-              Weekly tips, releases, and growth playbooks for modern brands.
-            </p>
-            <div className="flex gap-2 flex-col md:flex-row">
-              <input type="email" placeholder="Enter your email" className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"/>
-              <Button aria-label="Subscribe" className="bg-gradient-to-r from-primary to-pink-600 hover:from-primary hover:to-pink-500 px-6 py-3 rounded-lg font-medium transition-colors">
-                Subscribe
-              </Button>
-            </div>
-          </div>
-        </div>
-
         {/* Bottom Footer */}
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">

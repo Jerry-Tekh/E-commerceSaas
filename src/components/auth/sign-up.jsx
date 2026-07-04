@@ -1,5 +1,4 @@
 "use client";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,9 +21,9 @@ export function RegisterForm({ className, ...props }) {
     const [success, setSuccess] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [done, setDone] = useState(false);
     const [captchaToken, setCaptchaToken] = useState("");
     const turnstileRef = useRef(null);
+    const router = useRouter();
     const searchParams = useSearchParams();
     const callbackURL = searchParams.get("callbackURL") || info.defaultRedirect;
     const formSchema = z
@@ -98,12 +97,12 @@ export function RegisterForm({ className, ...props }) {
                 setError(error.message);
             }
             if (data) {
-                setDone(true);
+                setSuccess("Account created successfully.");
+                router.push(callbackURL);
             }
         });
     }
     return (<Form {...form}>
-      <Done done={done} setDone={setDone} callbackURL={callbackURL}/>
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn("flex flex-col gap-6", className)} {...props}>
         <div className="flex flex-col items-center gap-2 text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-light tracking-tighter uppercase text-zinc-900 dark:text-zinc-100">
@@ -197,29 +196,3 @@ export function RegisterForm({ className, ...props }) {
       </form>
     </Form>);
 }
-const Done = ({ done, setDone, callbackURL, }) => {
-    const router = useRouter();
-    return (<Dialog open={done} onOpenChange={setDone}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Account created successfully!</DialogTitle>
-          <DialogDescription>
-            <h1 className="text-lg font-semibold">
-              A link has been sent to your email to verify your account.
-            </h1>
-            <p className="text-sm text-muted-foreground mt-2">
-              Check your email for the verification link. you might need to
-              check your spam folder and mark it as not spam.
-            </p>
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <Button onClick={() => {
-            router.push(callbackURL);
-        }}>
-            Continue
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>);
-};

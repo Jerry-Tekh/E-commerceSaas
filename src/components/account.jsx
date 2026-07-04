@@ -8,15 +8,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
-import { AlertCircle, CheckCircle2, Clock, LogOut, Shield, User, UserCircle, Eye, EyeOff, } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Clock, LogOut, Shield, User, UserCircle, Eye, EyeOff, } from "lucide-react";
 import { format } from "date-fns";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage, } from "@/components/ui/form";
 import { toast } from "sonner";
-import Link from "next/link";
 import SignOut from "./auth/sign-out";
 export default function Account({ user, currentSession, }) {
     const [sessions, setSessions] = useState(null);
@@ -188,15 +186,6 @@ export default function Account({ user, currentSession, }) {
           <h1 className="text-2xl font-bold">{user.name}</h1>
           <p className="text-muted-foreground">{user.email}</p>
           <div className="mt-1 flex items-center gap-2">
-            <Badge variant={user.emailVerified ? "default" : "outline"} className="gap-1">
-              {user.emailVerified ? (<>
-                  <CheckCircle2 className="h-3 w-3"/>
-                  <span>Verified</span>
-                </>) : (<>
-                  <AlertCircle className="h-3 w-3"/>
-                  <span>Unverified</span>
-                </>)}
-            </Badge>
             <Badge variant="secondary" className="gap-1">
               <UserCircle className="h-3 w-3"/>
               <span>{user.role}</span>
@@ -238,16 +227,6 @@ export default function Account({ user, currentSession, }) {
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
                   <Input id="email" value={user.email} disabled/>
-                  {!user.emailVerified && (<Alert variant="destructive" className="mt-2">
-                      <AlertCircle className="h-4 w-4"/>
-                      <AlertTitle>Unverified Email</AlertTitle>
-                      <AlertDescription>
-                        Please verify your email address to access all features.
-                        <Button variant="link" className="h-auto p-0 pl-1">
-                          Resend verification email
-                        </Button>
-                      </AlertDescription>
-                    </Alert>)}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="image">Profile Picture URL</Label>
@@ -283,9 +262,6 @@ export default function Account({ user, currentSession, }) {
                   <FormField control={passwordForm.control} name="currentPassword" render={({ field }) => (<FormItem>
                         <div className="flex items-center">
                           <FormLabel>Current Password</FormLabel>
-                          <Link href="/forgot-password" className="ml-auto text-sm underline-offset-4 hover:underline">
-                            Forgot your password?
-                          </Link>
                         </div>
                         <FormControl>
                           <div className="relative">

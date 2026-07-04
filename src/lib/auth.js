@@ -1,12 +1,9 @@
 import db from "@/db";
-import { mailService } from "@/services/mail";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { emailHarmony } from "better-auth-harmony";
 import { captcha } from "better-auth/plugins";
 export const auth = betterAuth({
     plugins: [
-        emailHarmony(),
         ...(process.env.NODE_ENV === "production"
             ? [
                 captcha({
@@ -18,20 +15,8 @@ export const auth = betterAuth({
     ],
     emailAndPassword: {
         enabled: true,
-        requireEmailVerification: true,
-        autoSignIn: false,
-        sendResetPassword: async ({ user, url, token }, request) => {
-            console.log("sendResetPassword", user, url, token, request);
-            await mailService.sendPasswordResetEmail(user.email, url);
-        },
-    },
-    emailVerification: {
-        sendOnSignUp: true,
-        autoSignInAfterVerification: true,
-        sendVerificationEmail: async ({ user, url, token }, request) => {
-            console.log("sendVerificationEmail", user, url, token, request);
-            await mailService.sendVerificationEmail(user.email, url);
-        },
+        requireEmailVerification: false,
+        autoSignIn: true,
     },
     database: drizzleAdapter(db, {
         provider: "pg",

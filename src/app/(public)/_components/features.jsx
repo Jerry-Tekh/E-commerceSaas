@@ -1,5 +1,5 @@
 "use client";
-import { Store, Code, Palette, Package, CreditCard, Mail, Users, Globe, Search, BarChart3, Smartphone, Shield, } from "lucide-react";
+import { Store, Code, Palette, Package, CreditCard, ReceiptText, Users, Globe, Search, BarChart3, Smartphone, Shield, } from "lucide-react";
 import { motion } from "framer-motion";
 export default function Features() {
     const features = [
@@ -29,9 +29,9 @@ export default function Features() {
             description: "Accept payments globally with multiple payment methods and processors.",
         },
         {
-            icon: <Mail className="h-8 w-8"/>,
-            title: "Email Marketing",
-            description: "Reach your customers with powerful email campaigns and automation.",
+            icon: <ReceiptText className="h-8 w-8"/>,
+            title: "Order Records",
+            description: "Keep customer orders, receipts, and payment status organized in one dashboard.",
         },
         {
             icon: <Users className="h-8 w-8"/>,

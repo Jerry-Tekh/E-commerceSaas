@@ -198,16 +198,15 @@ function Index({ store }) {
                     Get 20% Off Your First Purchase
                   </h2>
                   <p className="text-muted-foreground max-w-md">
-                    Sign up for our newsletter and receive a special discount
-                    code for your first order.
+                    Use this featured area to promote a discount code for your
+                    first order.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-2 max-w-md">
-                    <Input placeholder="Enter your email" type="email" />
-                    <Button>Subscribe</Button>
+                    <Button>Shop Now</Button>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    By subscribing, you agree to receive marketing emails from
-                    us. You can unsubscribe at any time.
+                    Update this banner from your store settings when promotions
+                    are available.
                   </p>
                 </div>
               </div>

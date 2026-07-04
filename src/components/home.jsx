@@ -52,7 +52,7 @@ const FEATURE_GROUPS = [
             {
                 icon: Mail,
                 title: "Automatic Invoices",
-                description: "Every order creates an invoice automatically. Share it on WhatsApp or email, no manual calculations.",
+                description: "Every order creates an invoice automatically. Share it with customers or download it, no manual calculations.",
             },
         ],
     },
@@ -160,7 +160,7 @@ const PLANS = [
             "Advanced analytics",
             "Custom domain",
         ],
-        limitations: ["24/7 email support", "Remove Zynkart branding"],
+        limitations: ["Priority support", "Remove Zynkart branding"],
     },
     {
         name: "Elite",

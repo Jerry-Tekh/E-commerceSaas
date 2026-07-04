@@ -50,10 +50,6 @@ export function SeedDefaultLimitsButton() {
                   Product count limits (Free: 10, Pro: 50, Elite: unlimited)
                 </li>
                 <li>Feature access (Custom domain, API mode, etc.)</li>
-                <li>
-                  Email service limits (Free: 0, Pro: 500/month, Elite:
-                  unlimited)
-                </li>
                 <li>Branding settings and template access</li>
               </ul>
             </div>

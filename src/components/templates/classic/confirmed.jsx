@@ -71,7 +71,7 @@ export default function OrderConfirmation({ store, }) {
             </p>
           </div>
           <p className="mt-6 text-sm text-muted-foreground dark:text-slate-400">
-            A confirmation email has been sent to your email address.
+            You can view this order from your account page.
           </p>
         </CardContent>
         <CardFooter className="flex justify-center gap-4">

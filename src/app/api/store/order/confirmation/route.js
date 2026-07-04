@@ -37,9 +37,11 @@ export async function GET(req) {
                 return new NextResponse("Order not found", { status: 404 });
             }
             console.log("Payment verified");
-            return NextResponse.redirect(new URL(`https://${storeSlug}.zynkart.store/checkout/confirmed?orderId=${orderId}`, 
-            // `http://${storeSlug}.localhost:3000/checkout/confirmed?orderId=${orderId}`,
-            req.url));
+            const appBaseUrl = (process.env.NEXT_PUBLIC_APP_BASE_URL || "zynkart.store")
+                .replace(/^https?:\/\//, "")
+                .replace(/\/$/, "");
+            const appProtocol = process.env.NODE_ENV === "development" ? "http" : "https";
+            return NextResponse.redirect(new URL(`${appProtocol}://${storeSlug}.${appBaseUrl}/checkout/confirmed?orderId=${orderId}`, req.url));
         }
         else {
             return new NextResponse("Payment verification failed", { status: 400 });

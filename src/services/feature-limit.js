@@ -87,7 +87,7 @@ export class FeatureLimitService {
                     .where(eq(store.merchantId, userId));
                 return productCount[0]?.count || 0;
             }
-            // For usage-tracked features (like email_service)
+            // For usage-tracked features
             const usage = await db
                 .select()
                 .from(featureUsage)
@@ -333,14 +333,6 @@ export class FeatureLimitService {
             },
             {
                 planType: "free",
-                featureKey: "email_service",
-                limitType: "monthly",
-                limitValue: 0,
-                resetPeriod: "monthly",
-                description: "Monthly email sending limit",
-            },
-            {
-                planType: "free",
                 featureKey: "zynkart_branding",
                 limitType: "boolean",
                 limitValue: 1,
@@ -384,14 +376,6 @@ export class FeatureLimitService {
             },
             {
                 planType: "pro",
-                featureKey: "email_service",
-                limitType: "monthly",
-                limitValue: 500,
-                resetPeriod: "monthly",
-                description: "Monthly email sending limit",
-            },
-            {
-                planType: "pro",
                 featureKey: "zynkart_branding",
                 limitType: "boolean",
                 limitValue: 0,
@@ -432,14 +416,6 @@ export class FeatureLimitService {
                 limitType: "boolean",
                 limitValue: 1,
                 description: "Custom domain access",
-            },
-            {
-                planType: "elite",
-                featureKey: "email_service",
-                limitType: "monthly",
-                limitValue: -1,
-                resetPeriod: "monthly",
-                description: "Unlimited monthly emails",
             },
             {
                 planType: "elite",

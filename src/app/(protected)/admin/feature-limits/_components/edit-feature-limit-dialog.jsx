@@ -18,7 +18,6 @@ const formSchema = z.object({
         "stores_count",
         "products_count",
         "custom_domain",
-        "email_service",
         "zynkart_branding",
         "api_mode",
         "templates_access",
@@ -80,7 +79,7 @@ export function EditFeatureLimitDialog({ children, limit, onSuccess, }) {
         {
             value: "monthly",
             label: "Monthly",
-            description: "Monthly reset limit (e.g., 500 emails/month)",
+            description: "Monthly reset limit",
         },
         {
             value: "boolean",
